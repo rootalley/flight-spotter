@@ -2,7 +2,7 @@
 
 ## 1. Introduction & Vision Statement
 
-Flight Spotter is an augmented-reality mobile app for aviation enthusiasts that displays flight information just by pointing your camera at the plane. Unlike traditional flight tracking websites, our product offers a real-time, interactive "plane spotting" experience.
+Flight Spotter is an augmented-reality (AR) mobile app for aviation enthusiasts that displays flight information just by pointing your camera at the plane. Unlike traditional flight tracking websites, our product offers a real-time, interactive "plane spotting" experience.
 
 ## 2. The Problem
 
@@ -26,10 +26,9 @@ Our primary goal is to create an engaging, real-time augmented reality experienc
 
 *   **Goal 2: Provide Rich, Real-Time Data**
     *   **Feature:** Integrate with one or more free, real-time Automatic Dependent Surveillance-Broadcast (ADS-B) data services to ingest aircraft transponder information.
-    *   **Feature:** Display the selected aircraft's full flight path on a 2D map.
+    *   **Optional:** Display the selected aircraft's full flight path on a 2D map.
 
 *   **Goal 3: Create an Engaging User Experience**
-    *   **Feature:** A "Logbook" or "Hangar" where users can save the aircraft they have spotted, creating a personal collection.
     *   **Feature:** A clean, intuitive interface that prioritizes the augmented reality view.
 
 ## 5. How It Works: A Functional Overview
@@ -42,17 +41,19 @@ At its core, the app's logic follows a simple, powerful sequence to create the A
 4.  Request real-time data from an external ADS-B source for all aircraft currently flying within a reasonable radius of the user.
 5.  Filter the flight data to determine which of those nearby aircraft should fall within the camera's current field of view.
 6.  Capture a live video stream from the camera.
-7.  Perform object recognition to identify aircraft in the video stream.
-8.  Project an augmented-reality overlay on the camera stream to label the aircraft for which transponder data is available.
-9.  When a user taps an aircraft's label, the app displays a card with detailed information about that flight.
+7.  Project an augmented-reality overlay on the camera stream to label identified aircraft.
+8.  When a user taps an aircraft's label, the app displays a card with detailed information about that flight.
+9.  (Optional) Display the selected aircraft's full flight path on a 2D map.
 
 ## 6. Architectural Principles & Open Questions
 
-As we move toward implementation, several key design decisions and principles should guide our work:
+As we move toward implementation, here are a few key design decisions to be made:
 
-*   **Principle: Abstract the Data Source:** The interface for the ADS-B data provider should be abstracted. This will allow us to switch between different data sources (e.g., from OpenSky Network to ADS-B Exchange) with minimal changes to the core application logic.
+*   **Abstract the Data Source:** Should we abstract the interface for the ADS-B data provider? This will allow us to switch between different data sources (e.g., from OpenSky Network to ADS-B Exchange) if necessary with minimal changes to the core application logic.
 
-*   **Open Question: AR Implementation Strategy:** There are two potential approaches for displaying AR labels. The simplest is to calculate the projected screen position of an aircraft based on its transponder data and the phone's sensors. A more complex alternative would involve real-time object recognition to visually identify planes in the camera feed. The optimal approach is an open question that will require prototyping and testing to evaluate performance and reliability.
+*   **AR Implementation Strategy:** There are two potential approaches for displaying AR labels. The simplest is to calculate the projected screen position of an aircraft based on its transponder data and the phone's sensors. A more complex alternative would involve real-time object recognition to visually identify planes in the camera feed. The optimal approach is an open question that will require prototyping and testing to evaluate performance and reliability.
+
+*   **Flight Path Display:** Displaying the flight path on a 2D map may require historical transponder data, which might not be free of cost. We'd need to research if improvement in user experience is worth the cost and effort of implementation.
 
 ## 7. Technology & Stack (To Be Determined)
 
